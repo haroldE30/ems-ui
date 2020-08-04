@@ -1,4 +1,5 @@
-# Employee Management System UI
+# ews-ui
+Employee Management System UI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.2.
 
