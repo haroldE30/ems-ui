@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "hrms-ui": {
+    "ems-ui": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/hrms-ui",
+            "outputPath": "dist/ems-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "hrms-ui:build"
+            "browserTarget": "ems-ui:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "hrms-ui:build:production"
+              "browserTarget": "ems-ui:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "hrms-ui:build"
+            "browserTarget": "ems-ui:build"
           }
         },
         "test": {
@@ -115,16 +115,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "hrms-ui:serve"
+            "devServerTarget": "ems-ui:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "hrms-ui:serve:production"
+              "devServerTarget": "ems-ui:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "hrms-ui"
+  "defaultProject": "ems-ui"
 }
