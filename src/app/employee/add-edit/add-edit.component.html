@@ -1,0 +1,256 @@
+<div class="card">
+    <div class="card-header">
+        <h4 *ngIf="isAddMode">{{messages.HEADER_ADD_EMPLOYEE}}</h4>
+        <h4 *ngIf="!isAddMode">{{messages.HEADER_EDIT_EMPLOYEE}}</h4>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <fieldset>
+                <legend>
+                    <h6>{{messages.HEADER_EMPLOYEE_PERSONAL}}</h6>
+                </legend>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="firstName">{{messages.LABEL_EMPLOYEE_FIRST_NAME}}</label>
+                        <input type="text" formControlName="firstName" class="form-control"
+                            maxlength="100"
+                            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                            <div *ngIf="f.firstName.errors.required">{{messages.ERROR_EMPLOYEE_FIRST_NAME_REQUIRED}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label for="middleName">{{messages.LABEL_EMPLOYEE_MIDDLE_NAME}}</label>
+                        <input type="text" formControlName="middleName" class="form-control"
+                            maxlength="100"
+                            [ngClass]="{ 'is-invalid': submitted && f.middleName.errors }" />
+                        <div *ngIf="submitted && f.middleName.errors" class="invalid-feedback">
+                            <div *ngIf="f.middleName.errors.required">{{messages.ERROR_EMPLOYEE_MIDDLE_NAME_REQUIRED}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label for="lastName">{{messages.LABEL_EMPLOYEE_LAST_NAME}}</label>
+                        <input type="text" formControlName="lastName" class="form-control"
+                            maxlength="100"
+                            [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                            <div *ngIf="f.lastName.errors.required">{{messages.ERROR_EMPLOYEE_LAST_NAME_REQUIRED}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="birthDate">{{messages.LABEL_EMPLOYEE_BIRTH_DATE}}</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="{{messages.PLACE_HOLDER_DATE_PATTERN}}" angular-mydatepicker name="birthDate"
+                                [ngClass]="{ 'is-invalid': submitted && f.birthDate.errors }"
+                                formControlName="birthDate" [options]="myOptions" #dp="angular-mydatepicker"
+                                (click)="toggleBdCalendar()" />
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-outline-secondary"
+                                    (click)="dp.toggleCalendar()">
+                                    <i class="fa fa-calendar"></i>
+                                </button>
+                            </div>
+                            <div *ngIf="submitted && f.birthDate.errors" class="invalid-feedback">
+                                <div *ngIf="f.birthDate.errors.required">{{messages.ERROR_EMPLOYEE_BIRTH_DATE_REQUIRED}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label for="maritalStatus">{{messages.LABEL_EMPLOYEE_MARITAL_STATUS}}</label>
+                        <select formControlName="maritalStatus" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.maritalStatus.errors }"
+                            (change)="changeMaritalStatus($event.target.value)">
+                            <option value="">Choose</option>
+                            <option *ngFor="let ms of maritalStatus" value="{{ms.status}}"
+                                [selected]="f.maritalStatus.value === ms.status">{{ms.value}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.maritalStatus.errors" class="invalid-feedback">
+                            <div *ngIf="f.maritalStatus.errors.required">{{messages.ERROR_EMPLOYEE_MARITAL_STATUS_REQUIRED}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label labelFor="gender">{{messages.LABEL_EMPLOYEE_GENDER}}</label>
+                        <div class="form-group">
+                            <div class="form-check-inline" [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                                <label class="form-check-label" for="male">
+                                    <input class="form-check-input" type="radio" formControlName="gender" name="gender"
+                                        value="{{gender[0].code}}"
+                                        [checked]="f.gender.value === gender[0].value">{{gender[0].value}}
+                                </label>
+                            </div>
+                            <div class="form-check-inline">
+                                <label class="form-check-label" for="female">
+                                    <input class="form-check-input" type="radio" formControlName="gender" name="gender"
+                                        value="{{gender[1].code}}"
+                                        [checked]="f.gender.value === gender[1].value">{{gender[1].value}}
+                                </label>
+                            </div>
+                            <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                                <div *ngIf="f.gender.errors.required">
+                                    {{messages.ERROR_EMPLOYEE_GENDER_REQUIRED}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="employmentStatus">{{messages.LABEL_EMPLOYEE_EMPLOYMENT_STATUS}}</label>
+                        <select formControlName="employmentStatus" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.employmentStatus.errors }"
+                            (change)="changeEmploymentStatus($event.target.value)">
+                            <option value="">Choose</option>
+                            <option *ngFor="let es of employmentStatus" value="{{es.status}}"
+                                [selected]="f.employmentStatus.value === es.status">{{es.value}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.employmentStatus.errors" class="invalid-feedback">
+                            <div *ngIf="f.employmentStatus.errors.required">
+                                {{messages.ERROR_EMPLOYEE_EMPLOYMENT_STATUS_REQUIRED}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label for="employedDate">{{messages.LABEL_EMPLOYEE_EMPLOYED_DATE}}</label>
+                        <div class="input-group">
+                            <input class="form-control" placeholder="{{messages.PLACE_HOLDER_DATE_PATTERN}}" angular-mydatepicker
+                                [ngClass]="{ 'is-invalid': submitted && f.employedDate.errors }" name="employedDate"
+                                formControlName="employedDate" [options]="myOptions" #dp1="angular-mydatepicker"
+                                (click)="toggleEdCalendar()" />
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-outline-secondary"
+                                    (click)="dp1.toggleCalendar()">
+                                    <i class="fa fa-calendar"></i>
+                                </button>
+                            </div>
+                            <div *ngIf="submitted && f.employedDate.errors" class="invalid-feedback">
+                                <div *ngIf="f.employedDate.errors.required">{{messages.ERROR_EMPLOYEE_EMPLOYED_DATE_REQUIRED}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label for="positionId">{{messages.LABEL_EMPLOYEE_POSITION}}</label>
+                        <select formControlName="positionId" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.positionId.errors }"
+                            (change)="changePosition($event.target.value)">
+                            <option value="">Choose</option>
+                            <option *ngFor="let position of positions" value="{{position.id}}"
+                                [selected]="f.positionId.value === position.id">{{position.title}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.positionId.errors" class="invalid-feedback">
+                            <div *ngIf="f.positionId.errors.required">{{messages.ERROR_EMPLOYEE_POSITION_REQUIRED}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="departmentId">{{messages.LABEL_EMPLOYEE_DEPARTMENT}}</label>
+                        <select formControlName="departmentId" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.departmentId.errors }"
+                            (change)="changeDepartment($event.target.value)">
+                            <option value="">Choose</option>
+                            <option *ngFor="let department of departments" value="{{department.id}}"
+                                [selected]="f.departmentId.value === department.id">{{department.name}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.departmentId.errors" class="invalid-feedback">
+                            <div *ngIf="f.departmentId.errors.required">{{messages.ERROR_EMPLOYEE_DEPARTMENT_REQUIRED}}</div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>
+                    <h6>{{messages.HEADER_EMPLOYEE_CONTACT}}</h6>
+                </legend>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="phone">{{messages.LABEL_EMPLOYEE_PHONE_NUMBER}}</label>
+                        <input type="text" formControlName="phone" class="form-control"
+                            maxlength="15" id="phone" placeholder="{{messages.PLACE_HOLDER_PHONE_NUMBER}}"
+                            [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
+                        <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                            <div *ngIf="f.phone.errors.pattern">{{messages.ERROR_EMPLOYEE_PHONE_NUMBER_FORMAT}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label for="mobile">{{messages.LABEL_EMPLOYEE_MOBILE_NUMBER}}</label>
+                        <input type="text" formControlName="mobile" class="form-control"
+                            maxlength="12" id="mobile" placeholder="{{messages.PLACE_HOLDER_MOBILE_NUMBER}}"
+                            [ngClass]="{ 'is-invalid': submitted && f.mobile.errors }" />
+                        <div *ngIf="submitted && f.mobile.errors" class="invalid-feedback">
+                            <div *ngFor="let mobileErrorMessage of mobileErrorMessages">{{mobileErrorMessage}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label for="email">{{messages.LABEL_EMPLOYEE_EMAIL}}</label>
+                        <input type="text" formControlName="email" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngFor="let emailErrorMessage of emailErrorMessages">{{emailErrorMessage}}</div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>
+                    <h6>{{messages.HEADER_EMPLOYEE_ADDRESS}}</h6>
+                </legend>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="street">{{messages.LABEL_EMPLOYEE_STREET}}</label>
+                        <input type="text" formControlName="street" class="form-control"
+                            maxlength="255"
+                            [ngClass]="{ 'is-invalid': submitted && f.street.errors }" />
+                        <div *ngIf="submitted && f.street.errors" class="invalid-feedback">
+                            <div *ngIf="f.street.errors.required">{{messages.ERROR_EMPLOYEE_STREET_REQUIRED}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label for="city">{{messages.LABEL_EMPLOYEE_CITY}}</label>
+                        <input type="text" formControlName="city" class="form-control"
+                            maxlength="100"
+                            [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+                        <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                            <div *ngIf="f.city.errors.required">{{messages.ERROR_EMPLOYEE_CITY_REQUIRED}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label for="zipCode">{{messages.LABEL_EMPLOYEE_ZIP_CODE}}</label>
+                        <input type="text" formControlName="zipCode" class="form-control" maxlength="4"
+                            [ngClass]="{ 'is-invalid': submitted && f.zipCode.errors }" />
+                        <div *ngIf="submitted && f.zipCode.errors" class="invalid-feedback">
+                            <div *ngIf="f.zipCode.errors.required">{{messages.ERROR_EMPLOYEE_ZIP_CODE_REQUIRED}}</div>
+                        </div>
+                    </div>
+                    <div class="form-group col">
+                        <label for="country">{{messages.LABEL_EMPLOYEE_COUNTRY}}</label>
+                        <select formControlName="country" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+                            <option value="">Choose</option>
+                            <option *ngFor="let country of countries" value="{{country.code}}"
+                                [selected]="f.country.value === country.code">{{country.name}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                            <div *ngIf="f.country.errors.required">{{messages.ERROR_EMPLOYEE_COUNTRY_REQUIRED}}</div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                    {{messages.BUTTON_SAVE}}
+                </button>&nbsp;
+                <a routerLink="/employees" class="btn btn-outline-danger">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    {{messages.BUTTON_CANCEL}}</a>
+            </div>
+        </form>
+    </div>
+</div>

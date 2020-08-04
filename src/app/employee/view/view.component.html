@@ -1,0 +1,151 @@
+<div class="card">
+    <div class="card-header">
+        <h4>{{messages.HEADER_EMPLOYEE_DETAILS}}</h4>
+    </div>
+    <div class="card-body" *ngIf="employee">
+            <fieldset>
+                <legend>
+                    <h6>{{messages.HEADER_EMPLOYEE_PERSONAL}}</h6>
+                </legend>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="firstName">{{messages.LABEL_EMPLOYEE_FIRST_NAME}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.firstName}}
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label labelFor="gender">{{messages.LABEL_EMPLOYEE_GENDER}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.gender | titlecase}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="middleName">{{messages.LABEL_EMPLOYEE_MIDDLE_NAME}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.middleName}}
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="employmentStatus">{{messages.LABEL_EMPLOYEE_EMPLOYMENT_STATUS}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.employmentStatus | titlecase}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="lastName">{{messages.LABEL_EMPLOYEE_LAST_NAME}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.lastName}}
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="employedDate">{{messages.LABEL_EMPLOYEE_EMPLOYED_DATE}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.employedDate | date: messages.DATE_PATTERN}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="birthDate">{{messages.LABEL_EMPLOYEE_BIRTH_DATE}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.birthDate | date: messages.DATE_PATTERN}}
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="positionId">{{messages.LABEL_EMPLOYEE_POSITION}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.position.title}}
+                    </div>                    
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="maritalStatus">{{messages.LABEL_EMPLOYEE_MARITAL_STATUS}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.maritalStatus | titlecase}}
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="departmentId">{{messages.LABEL_EMPLOYEE_DEPARTMENT}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.department.name}}
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>
+                    <h6>{{messages.HEADER_EMPLOYEE_CONTACT}}</h6>
+                </legend>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="phone">{{messages.LABEL_EMPLOYEE_PHONE_NUMBER}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.phone}}
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="mobile">{{messages.LABEL_EMPLOYEE_MOBILE_NUMBER}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.mobile}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="email">{{messages.LABEL_EMPLOYEE_EMAIL}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.email}}
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>
+                    <h6>{{messages.HEADER_EMPLOYEE_ADDRESS}}</h6>
+                </legend>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="street">{{messages.LABEL_EMPLOYEE_STREET}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.street}}
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="city">{{messages.LABEL_EMPLOYEE_CITY}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.city}}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-2">
+                        <label for="zipCode">{{messages.LABEL_EMPLOYEE_ZIP_CODE}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.zipCode}}
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label for="country">{{messages.LABEL_EMPLOYEE_COUNTRY}}</label>
+                    </div>
+                    <div class="form-group col">
+                        {{employee.country}}
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <a routerLink="/employees/edit/{{employee.id}}" class="btn btn-primary mr-1">
+                    <i class="fa fa-edit" aria-hidden="true"></i>
+                    {{messages.BUTTON_EDIT}}</a>&nbsp;
+                <a routerLink="/employees" class="btn btn-outline-danger">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    {{messages.BUTTON_CANCEL}}</a>
+            </div>
+        
+    </div>
+</div>

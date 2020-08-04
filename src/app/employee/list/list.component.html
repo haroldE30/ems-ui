@@ -1,0 +1,61 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-auto mr-auto">
+                <h4 style="text-align: left; vertical-align: middle;">
+                    {{messages.HEADER_EMPLOYEE_LIST}}
+                </h4>
+            </div>
+            <div class="col-auto">
+                <a routerLink="add" class="btn btn-sm btn-success mb-2">
+                    <i class="fa fa-user-plus"></i>
+                    {{messages.BUTTON_ADD_EMPLOYEE}}
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 20%">{{messages.LABEL_EMPLOYEE_FIRST_NAME}}</th>
+                    <th style="width: 20%">{{messages.LABEL_EMPLOYEE_LAST_NAME}}</th>
+                    <th style="width: 15%">{{messages.LABEL_EMPLOYEE_BIRTH_DATE}}</th>
+                    <th style="width: 10%;">{{messages.LABEL_EMPLOYEE_MOBILE_NUMBER}}</th>
+                    <th style="width: 15%;">{{messages.LABEL_EMPLOYEE_EMAIL}}</th>
+                    <th style="width: 5%;">{{messages.LABEL_EMPLOYEE_GENDER}}</th>
+                    <th style="width: 10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let emp of employees">
+                    <td>{{emp.firstName | titlecase}}</td>
+                    <td>{{emp.lastName | titlecase}}</td>
+                    <td>{{emp.birthDate | date: messages.DATE_PATTERN}}</td>
+                    <td>{{emp.mobile}}</td>
+                    <td>{{emp.email}}</td>
+                    <td>{{emp.gender | titlecase}}</td>
+                    <td style="white-space: nowrap">
+                        <a routerLink="view/{{emp.id}}" class="btn btn-sm btn-info mr-1" title="{{messages.BUTTON_VIEW}}">
+                            <i class="fa fa-eye"></i>
+                        </a>
+                        <a routerLink="edit/{{emp.id}}" class="btn btn-sm btn-primary mr-1" title="{{messages.BUTTON_EDIT}}">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <button (click)="deleteEmployee(emp.id)" class="btn btn-sm btn-danger btn-delete-user btn-icon"
+                            title="{{messages.BUTTON_DELETE}}"
+                            [disabled]="emp.isDeleting">
+                            <i *ngIf="emp.isDeleting" class="spinner-border spinner-border-sm"></i>
+                            <i *ngIf="!emp.isDeleting" class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="!employees">
+                    <td colspan="4" class="text-center">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

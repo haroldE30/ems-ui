@@ -1,0 +1,49 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-auto mr-auto">
+                <h4 style="text-align: left; vertical-align: middle;">
+                    {{messages.HEADER_DEPARTMENT_LIST}}
+                </h4>
+            </div>
+            <div class="col-auto">
+                <a routerLink="add" class="btn btn-sm btn-success mb-2">
+                    <i class="fa fa-industry"></i>
+                    {{messages.BUTTON_ADD_DEPARTMENT}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 30%">{{messages.LABEL_DEPARTMENT_NAME}}</th>
+                    <th style="width: 60%">{{messages.LABEL_DESCRIPTION}}</th>
+                    <th style="width: 10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let department of departments">
+                    <td>{{department.name}}</td>
+                    <td>{{department.description}}</td>
+                    <td style="white-space: nowrap">
+                        <a routerLink="edit/{{department.id}}" class="btn btn-sm btn-primary mr-1" title="{{messages.BUTTON_EDIT}}">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <button (click)="deleteDepartment(department.id)" class="btn btn-sm btn-danger btn-delete-user btn-icon"
+                            title="{{messages.BUTTON_DELETE}}"
+                            [disabled]="department.isDeleting">
+                            <i *ngIf="department.isDeleting" class="spinner-border spinner-border-sm"></i>
+                            <i *ngIf="!department.isDeleting" class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="!departments">
+                    <td colspan="4" class="text-center">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
