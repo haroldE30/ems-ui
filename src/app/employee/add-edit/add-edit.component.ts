@@ -106,8 +106,8 @@ export class AddEditComponent implements OnInit {
           this.f.city.setValue(data.city);
           this.f.zipCode.setValue(data.zipCode);
           this.f.country.setValue(data.country);
-          this.f.positionId.setValue(data.position.id);
-          this.f.departmentId.setValue(data.department.id);
+          this.f.positionId.setValue(data.positionId);
+          this.f.departmentId.setValue(data.departmentId);
         });
     }
   }

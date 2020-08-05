@@ -5,12 +5,14 @@ import { Routes, RouterModule } from '@angular/router';
 const employeeModule = () => import('./employee/employee.module').then(x => x.EmployeeModule);
 const positionModule = () => import('./position/position.module').then(x => x.PositionModule);
 const departmentModule = () => import('./department/department.module').then(x => x.DepartmentModule);
+const projectModule = () => import('./project/project.module').then(x => x.ProjectModule);
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'employees', loadChildren: employeeModule },
   { path: 'positions', loadChildren: positionModule },
   { path: 'departments', loadChildren: departmentModule },
+  { path: 'projects', loadChildren: projectModule },
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' }

@@ -21,6 +21,7 @@ export enum Messages {
     BUTTON_ADD_POSITION = 'Add Position',
     BUTTON_ADD_DEPARTMENT = 'Add Department',
     BUTTON_ADD_EMPLOYEE = 'Add Employee',
+    BUTTON_ADD_PROJECT = 'Add Project',
 
     HEADER_ADD_POSTION = BUTTON_ADD_POSITION,
     HEADER_EDIT_POSITION = 'Edit Position',
@@ -38,17 +39,9 @@ export enum Messages {
     HEADER_EMPLOYEE_CONTACT = 'Contact',
     HEADER_EMPLOYEE_ADDRESS = 'Address',
 
-    POSITION_SAVED = 'Position saved.',
-    POSITION_UPDATED = 'Position updated',
-    POSITION_DELETED = 'Position deleted.',
-    
-    DEPARTMENT_SAVED = 'Position saved.',
-    DEPARTMENT_UPDATED = 'Position updated',
-    DEPARTMENT_DELETED = 'Position deleted.',
-    
-    EMPLOYEE_SAVED = 'Employee saved.',
-    EMPLOYEE_UPDATED = 'Employee updated.',
-    EMPLOYEE_DELETED = 'Employee deleted.',
+    HEADER_ADD_PROJECT = BUTTON_ADD_PROJECT,
+    HEADER_EDIT_PROJECT = 'Edit Project',
+    HEADER_PROJECT_LIST = 'List of Projects',
 
     // Labels
     LABEL_POSITION_TITLE = 'Title',
@@ -72,6 +65,16 @@ export enum Messages {
     LABEL_EMPLOYEE_CITY = 'City',
     LABEL_EMPLOYEE_ZIP_CODE = 'Zip Code',
     LABEL_EMPLOYEE_COUNTRY = 'Country',
+
+    LABEL_PROJECT_NAME = 'Name',
+    LABEL_PROJECT_DECRIPTION = 'Description',
+    LABEL_PROJECT_MANAGER = 'Manager',
+    LABEL_PROJECT_SIZE = 'Size',
+    LABEL_PROJECT_STATUS = 'Status',
+    LABEL_PROJECT_REMARKS = 'Remaks',
+    LABEL_PROJECT_STARTE_DATE = 'Start Date',
+    LABEL_PROJECT_END_DATE = 'End Date',
+
 
     // Place holder
     PLACE_HOLDER_DATE_PATTERN = 'mm.dd.yyyy',
@@ -104,5 +107,16 @@ export enum Messages {
     ERROR_EMPLOYEE_ZIP_CODE_REQUIRED = 'Zip Code is required.',
     ERROR_EMPLOYEE_COUNTRY_REQUIRED = 'Country is required.',
 
+    // Alert messages    
+    POSITION_SAVED = 'Position saved.',
+    POSITION_UPDATED = 'Position updated',
+    POSITION_DELETED = 'Position deleted.',
     
+    DEPARTMENT_SAVED = 'Position saved.',
+    DEPARTMENT_UPDATED = 'Position updated',
+    DEPARTMENT_DELETED = 'Position deleted.',
+    
+    EMPLOYEE_SAVED = 'Employee saved.',
+    EMPLOYEE_UPDATED = 'Employee updated.',
+    EMPLOYEE_DELETED = 'Employee deleted.',
 }

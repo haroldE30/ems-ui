@@ -12,7 +12,8 @@ import { ViewComponent } from './view/view.component';
   declarations: [
     LayoutComponent,
     AddEditComponent, 
-    ListComponent, ViewComponent
+    ListComponent, 
+    ViewComponent
   ],
   imports: [
     CommonModule,

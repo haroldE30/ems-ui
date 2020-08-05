@@ -1,7 +1,3 @@
-import { Department } from './department';
-import { Address } from './address';
-import { Position } from './position';
-
 export class Employee {
     id: number;
     firstName: string;
@@ -19,8 +15,8 @@ export class Employee {
     city: string;
     zipCode: number;
     country: string;
-    position: Position;
     positionId: number;
-    department: Department;
+    positionTitle: string;
     departmentId: number;
+    departmentName: string;
 }

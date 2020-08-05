@@ -1,0 +1,59 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-auto mr-auto">
+                <h4 style="text-align: left; vertical-align: middle;">
+                    {{messages.HEADER_PROJECT_LIST}}
+                </h4>
+            </div>
+            <div class="col-auto">
+                <a routerLink="add" class="btn btn-sm btn-success mb-2">
+                    <i class="fa fa-list-ol" aria-hidden="true"></i>
+                    {{messages.BUTTON_ADD_PROJECT}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 15%">{{messages.LABEL_PROJECT_NAME}}</th>
+                    <th style="width: 30%">{{messages.LABEL_PROJECT_DECRIPTION}}</th>
+                    <th style="width: 10%">{{messages.LABEL_PROJECT_MANAGER}}</th>
+                    <th style="width: 5%">{{messages.LABEL_PROJECT_SIZE}}</th>
+                    <th style="width: 10%">{{messages.LABEL_PROJECT_STATUS}}</th>
+                    <th style="width: 10%">{{messages.LABEL_PROJECT_STARTE_DATE}}</th>
+                    <th style="width: 10%">{{messages.LABEL_PROJECT_END_DATE}}</th>
+                    <th style="width: 10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let project of projects">
+                    <td>{{project.name}}</td>
+                    <td>{{project.description}}</td>
+                    <td>{{project.manager}}</td>
+                    <td>{{project.size}}</td>
+                    <td>{{project.status}}</td>
+                    <td>{{project.startDate}}</td>
+                    <td>{{project.endDate}}</td>
+                    <td style="white-space: nowrap">
+                        <a routerLink="edit/{{project.id}}" class="btn btn-sm btn-primary mr-1" title="{{messages.BUTTON_EDIT}}">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <button (click)="deleteProject(project.id)" class="btn btn-sm btn-danger btn-delete-user btn-icon"
+                            title="{{messages.BUTTON_DELETE}}"
+                            [disabled]="project.isDeleting">
+                            <i *ngIf="project.isDeleting" class="spinner-border spinner-border-sm"></i>
+                            <i *ngIf="!project.isDeleting" class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="!projects">
+                    <td colspan="4" class="text-center">
+                        <span class="spinner-border spinner-border-lg align-center"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
